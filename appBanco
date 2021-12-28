@@ -1,0 +1,60 @@
+package application;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import entities.Banco;
+
+public class appBanco {
+
+	public static void main(String[] args) {
+
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		Banco bank = new Banco();
+
+		System.out.print("Digite seu nome para cadastro no Banco Jbank: ");
+		bank.user = sc.nextLine();
+		System.out.print("Dia de Nascimento: ");
+		bank.dataNas = sc.nextInt();
+		System.out.println("Cadastro Finalizado! Qual valor do seu primeiro deposito no Jbank?");
+		System.out.printf("R$: ");
+		bank.valueAccount = sc.nextDouble();
+
+		System.out.println();
+		System.out.println("Dados do Usuario: " + bank);
+
+		System.out.printf("Valor Saque: ");
+		double saque = sc.nextDouble();
+		bank.saqueAccount(saque);
+
+		System.out.println();
+		System.out.println("Dados atualizados: " + bank);
+
+		System.out.printf("Deposito ou Transferencia? ");
+		System.out.printf("d/t: ");
+		String transfDeposit = sc.next();
+
+		if (transfDeposit.equals("d")) {
+			System.out.printf("Valor para deposito: ");
+			double deposit = sc.nextDouble();
+			bank.depositAccount(deposit);
+			System.out.println();
+			System.out.println("Deposito concluido!");
+			System.out.println("Atualização: " + bank);
+
+		} else if (transfDeposit.equals("t")) {
+			System.out.printf("Valor para Transferencia: ");
+			double transf = sc.nextDouble();
+			bank.transfAccount(transf);
+			System.out.println();
+			System.out.println("Transferencia Realizada!");
+			System.out.println("Atualização: " + bank);
+
+		}
+
+		sc.close();
+
+	}
+
+}
