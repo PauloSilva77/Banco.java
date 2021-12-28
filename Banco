@@ -1,0 +1,26 @@
+package entities;
+
+public class Banco {
+	
+	public String user;
+	public double valueAccount;
+	public int dataNas;
+	
+	public String toString() {
+		
+		return "Ola " + user + ", " + "Saldo: " + valueAccount;
+	}
+	
+	public void saqueAccount(double saque) {
+	   this.valueAccount -= saque;
+	}
+
+	public void depositAccount(double deposit) {
+		this.valueAccount += deposit;
+	}
+	
+	public void transfAccount(double transf) {
+		this.valueAccount -= transf;
+	}
+	
+}
