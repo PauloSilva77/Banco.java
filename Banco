@@ -1,26 +1,60 @@
 package entities;
-
-public class Banco {
+public class Order {
 	
-	public String user;
-	public double valueAccount;
-	public int dataNas;
+	private String user;
+	private double balance;
+	private int numAccount;
+	
+	public Order(String titular, int conta) {
+		
+		this.user = titular;
+		this.numAccount = conta;	
+	}
+	
+	public Order(String titular, int conta, double amount) {
+		this.balance = amount;
+		this.user = titular;
+		this.numAccount = conta;
+	}
+	
+	
+	
+	public String getUser() {
+		return this.user;
+	}
+	
+	public void setBalance(double amount) {
+		this.balance = amount;
+	}
+	
+	public double getBalance() {
+		return balance;
+	}
+	
+	public void setNumAccount(int conta) {
+		this.numAccount = conta;
+	}
+
+	public int getNumAccount() {
+		return numAccount;
+	}
+	
+	public void depositBalance(double amount) {
+		this.balance += amount;
+	}
+	
+	public void withdraw(double amount) {
+		this.balance -= amount + 5.0;
+	}
 	
 	public String toString() {
 		
-		return "Ola " + user + ", " + "Saldo: " + valueAccount;
-	}
-	
-	public void saqueAccount(double saque) {
-	   this.valueAccount -= saque;
+		return "Account: "  
+		+ numAccount  
+		+ ", Titular: " 
+		+ user
+		+ ", Saldo: "
+		+ balance;	
 	}
 
-	public void depositAccount(double deposit) {
-		this.valueAccount += deposit;
-	}
-	
-	public void transfAccount(double transf) {
-		this.valueAccount -= transf;
-	}
-	
 }
