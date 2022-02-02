@@ -1,59 +1,113 @@
 package application;
 
-import java.util.Locale;
 import java.util.Scanner;
 
-import entities.Banco;
+import entities.Order;
 
-public class appBanco {
+public class Bank {
 
 	public static void main(String[] args) {
 
-		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-		Banco bank = new Banco();
 
-		System.out.print("Digite seu nome para cadastro no Banco Jbank: ");
-		bank.user = sc.nextLine();
-		System.out.print("Dia de Nascimento: ");
-		bank.dataNas = sc.nextInt();
-		System.out.println("Cadastro Finalizado! Qual valor do seu primeiro deposito no Jbank?");
-		System.out.printf("R$: ");
-		bank.valueAccount = sc.nextDouble();
+		Order order;
+
+		System.out.print("Entre com numero da conta: ");
+		int account = sc.nextInt();
+		System.out.print("Entre nome do titular da conta: ");
+		String titular = sc.next();
+
+		System.out.println("Deseja fazer um deposito inicial? * s/n");
+		char response = sc.next().charAt(0);
+
+		if (response == 's') {
+			System.out.print("Digite o valor do deposito inicial: ");
+			double depositInicial = sc.nextDouble();
+			System.out.println();
+			order = new Order(titular, account, depositInicial);
+		} else {
+			order = new Order(titular, account);
+			System.out.println();
+		}
+
+		System.out.println("Bem vindo, " + order.getUser());
+
+		System.out.println(order);
+		System.out.println();
+
+		System.out.print("Digite um valor para deposíto: ");
+		double depositValue = sc.nextDouble();
+		order.depositBalance(depositValue);
+		System.out.println();
+
+		System.out.println("Atualizaçao da conta ");
+		System.out.println(order);
+		System.out.println();
+
+		System.out.print("Digite um valor de Saque: ");
+		double saqueAccount = sc.nextDouble();
+		order.withdraw(saqueAccount);
+		System.out.println("Obs: Taxa de Saque padrão: R$ 5.0");
 
 		System.out.println();
-		System.out.println("Dados do Usuario: " + bank);
-
-		System.out.printf("Valor Saque: ");
-		double saque = sc.nextDouble();
-		bank.saqueAccount(saque);
-
+		System.out.println(order);
 		System.out.println();
-		System.out.println("Dados atualizados: " + bank);
 
-		System.out.printf("Deposito ou Transferencia? ");
-		System.out.printf("d/t: ");
-		String transfDeposit = sc.next();
+		System.out.println("Deseja fazer mais alguma coisa? s/n");
+		response = sc.next().charAt(0);
+		if (response == 's') {
 
-		if (transfDeposit.equals("d")) {
-			System.out.printf("Valor para deposito: ");
-			double deposit = sc.nextDouble();
-			bank.depositAccount(deposit);
-			System.out.println();
-			System.out.println("Deposito concluido!");
-			System.out.println("Atualização: " + bank);
-
-		} else if (transfDeposit.equals("t")) {
-			System.out.printf("Valor para Transferencia: ");
-			double transf = sc.nextDouble();
-			bank.transfAccount(transf);
-			System.out.println();
-			System.out.println("Transferencia Realizada!");
-			System.out.println("Atualização: " + bank);
-
+			menu(order);
 		}
 
 		sc.close();
+
+	}
+
+	public static void menu(Order orderOrder) {
+
+		Scanner sca = new Scanner(System.in);
+		System.out.println("O que deseja fazer agora? ");
+		System.out.println("Saque: digite 1,  Depósito: digite 2, Fechar App: digite 0 ");
+		int respo = sca.nextInt();
+
+		switch (respo) {
+
+		case 1:
+			System.out.println();
+			System.out.println("Seu Saldo: " + orderOrder.getBalance());
+			System.out.print("Digite o valor do Saque: ");
+			double amount = sca.nextDouble();
+			orderOrder.withdraw(amount);
+			System.out.println("Taxa padrão de Saque: R$ 5.00");
+			System.out.println();
+			System.out.println("Saque Concluido! Novo Saldo: " + orderOrder.getBalance());
+			System.out.println();
+			menu(orderOrder);
+			break;
+
+		case 2:
+			System.out.print("Digite valor para Depósito: ");
+			amount = sca.nextDouble();
+			orderOrder.depositBalance(amount);
+			System.out.println("Saque concluido! Novo Saldo: " + orderOrder.getBalance());
+			System.out.println();
+			menu(orderOrder);
+			break;
+
+		case 0:
+			System.out.println();
+			System.out.println("Exiting..");
+			break;
+
+		default:
+			System.out.println("Tente novamente");
+			System.out.println();
+			menu(orderOrder);
+
+		}
+
+		sca.close();
 
 	}
 
