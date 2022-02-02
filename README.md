@@ -1,10 +1,4 @@
 # Banco.java
 
-Aplicativo de Banco contendo Cadastro de novos Usuarios, Depósito Inicial na conta e Transferência com base no valor disponivel na conta.
-
-1. Cadastro de Usuarios do banco: Cadastra nome do novo usuario do banco, juntamente com a dia de nascimento do tal.
-2. Primeiro depósito na conta do Usuario (depositAccount): Recebe o valor que o usuario quer depositar na conta para assim ter algum saldo nela.
-3. Após primeiro deposito, irá mostrar a atualização com nome do Usuario e seu saldo respectivo disponivel em sua conta.
-4. Logo após, dando a opçao de saque utilizando o metodo (saqueAccount) que fará a substração com base na entrada de dados no saldo que esta disponivel na conta.
-5. Atualização de Saldo;
-6. Programa da opçao para novo deposito na conta ou transferencia do valo disponivel: Utilizando metodos depositAccount e transfAccount.
+Aplicação capaz de cadastrar novos usuarios como uma conta de banco, realizar depositos e saques.
+Métodos da Aplicação: receber dados do usuario, com ou sem depósito inicial com a ajuda de construtores e getters e setters.
