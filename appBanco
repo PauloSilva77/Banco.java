@@ -1,9 +1,6 @@
 package application;
-
 import java.util.Scanner;
-
 import entities.Order;
-
 public class Bank {
 
 	public static void main(String[] args) {
