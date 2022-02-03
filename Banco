@@ -23,17 +23,15 @@ public class Order {
 		return this.user;
 	}
 	
-	public void setBalance(double amount) {
-		this.balance = amount;
+	public void setUser(String user) {
+		this.user = user;
 	}
+	
 	
 	public double getBalance() {
 		return balance;
 	}
 	
-	public void setNumAccount(int conta) {
-		this.numAccount = conta;
-	}
 
 	public int getNumAccount() {
 		return numAccount;
